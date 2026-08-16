@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notta料金はどのプランが必要？Free・Premium・Businessを利用条件で診断</title>
+  <meta name="description" content="Nottaの料金とFree・Premium・Businessの違いを確認し、月間利用時間・会議時間・人数・CRM・録画などから最低必要プランを診断。同条件でFireflies、tl;dv、Otterも比較します。">
+  <link rel="canonical" href="https://ricckyyy.github.io/notta-plan-selector/">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap hero">
+      <p class="eyebrow">Notta料金 × 最低必要プラン診断</p>
+      <h1>Nottaの料金はどのプランが必要？<br>利用条件から無料・有料プランを診断</h1>
+      <p class="lead">料金表だけでは「自分の会議時間ならFreeで足りるか」「PremiumかBusinessか」まで照合が必要です。8項目を入れると、Nottaの最低必要planと、同条件でFireflies・tl;dv・Otterなら無料または安価に満たせる可能性を比較します。</p>
+      <a class="button button-secondary" href="#calculator">条件を入力して診断する</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-labelledby="pricing-title" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">2026-08-16確認</p>
+          <h2 id="pricing-title">Nottaの料金概要</h2>
+        </div>
+        <a href="https://www.notta.ai/pricing" target="_blank" rel="noopener noreferrer">Notta公式料金を見る</a>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>plan</th><th>年払い時の表示</th><th>主な診断上の境界</th><th>診断</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Free</th><td>0円</td><td>120分/月、1回3分</td><td>対象</td></tr>
+            <tr><th>Premium</th><td>1,185円/月、総額14,220円（税込・12か月一括）</td><td>1,800分/月、1回5時間、1アカウント</td><td>対象</td></tr>
+            <tr><th>Business</th><td>2,508円/月、1アカウント時30,096円（税込・12か月一括）</td><td>文字起こし無制限、CRM/Zapier、Web会議録画、team利用</td><td>対象</td></tr>
+            <tr><th>Business Plus</th><td>年払い64,800円/年/アカウント（税抜、月額換算5,400円）<br>月払い9,000円/月/アカウント（税抜）</td><td>Business＋Notta Brain全機能、AI学習なし等</td><td><strong>対象外</strong></td></tr>
+            <tr><th>Enterprise</th><td>要相談</td><td>カスタム条件、上位security/admin要件</td><td>一部判定可能</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fineprint">Nottaの通常料金ページは表示価格を税込と明記しています。Business Plusは2026年7月27日の公式発表で税抜価格として別途案内されています。税区分を混同していません。Business Plusは現在の8入力ではBusinessとの差を正確に判定できないため、料金表には掲載しますが自動診断では推薦しません。</p>
+      <p class="source-row"><a href="https://www.notta.ai/news/info/notta-business-plus" target="_blank" rel="noopener noreferrer">Business Plus公式発表</a></p>
+    </section>
+
+    <section aria-labelledby="how-title" class="section explainer">
+      <h2 id="how-title">料金だけでplanを決めにくい理由</h2>
+      <div class="explain-grid">
+        <article><h3>Freeで足りる？</h3><p>月120分以内でも、1回の文字起こしが3分を超えるとFreeでは要件を満たしません。月間minutesだけでは判定できません。</p></article>
+        <article><h3>Premiumへ上がる代表条件</h3><p>通常の30〜60分会議を丸ごと文字起こししたい個人利用では、Freeの1回3分上限を超えるためPremiumが候補になります。</p></article>
+        <article><h3>Businessへ上がる代表条件</h3><p>月1,800分超、複数人利用、CRM/Zapier連携、Web会議録画などが必要ならBusiness側の条件を確認します。</p></article>
+        <article><h3>他社なら無料の場合も</h3><p>Firefliesやtl;dvは無料文字起こしが強いため、同じ条件でも有料Nottaではなく他社Freeが残る場合があります。Affiliateの有無で順位は変えません。</p></article>
+      </div>
+    </section>
+
+    <section id="calculator" aria-labelledby="calculator-title" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">8項目・保存なし</p>
+          <h2 id="calculator-title">あなたの最低必要planを診断</h2>
+        </div>
+      </div>
+
+      <form id="selector-form" class="panel">
+        <div class="grid">
+          <fieldset class="field full">
+            <legend>1. 利用する会議platform</legend>
+            <div class="checks">
+              <label><input type="checkbox" name="platform" value="teams"> Microsoft Teams</label>
+              <label><input type="checkbox" name="platform" value="zoom" checked> Zoom</label>
+              <label><input type="checkbox" name="platform" value="meet"> Google Meet</label>
+              <label><input type="checkbox" name="platform" value="webex"> Webex</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="maxMeetingMinutes">2. 1回の最長meeting時間（分）</label>
+            <input id="maxMeetingMinutes" type="number" min="1" value="60" required inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="monthlyMinutes">3. 月間meeting / transcription時間（分）</label>
+            <input id="monthlyMinutes" type="number" min="1" value="600" required inputmode="numeric">
+          </div>
+
+          <fieldset class="field">
+            <legend>4. 利用形態</legend>
+            <div class="option-row">
+              <label><input type="radio" name="usageMode" value="individual" checked> 個人</label>
+              <label><input type="radio" name="usageMode" value="team"> team</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="paidSeats">5. 有料対象人数</label>
+            <input id="paidSeats" type="number" min="1" value="1" disabled required inputmode="numeric">
+          </div>
+
+          <fieldset class="field full">
+            <legend>6〜8. 必須機能</legend>
+            <div class="checks">
+              <label><input id="translationRequired" type="checkbox"> 翻訳（別言語へ変換）が必要</label>
+              <label><input id="crmRequired" type="checkbox"> CRM / Zapier等の連携が必要</label>
+              <label><input id="videoRequired" type="checkbox"> 会議video recordingが必要</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="button">最低必要planを比較</button>
+        <p class="notice">料金・plan仕様は変更される場合があります。JPYとUSDは為替換算せず、異なる通貨の有料planを「最安」と断定しません。Enterprise等、公開情報が不足する条件は「判定不能」にします。</p>
+      </form>
+      <noscript><p class="notice warning">診断calculatorの実行にはJavaScriptが必要です。料金概要と判定ルールの説明はJavaScriptなしでも読めます。</p></noscript>
+    </section>
+
+    <section id="result-section" aria-labelledby="result-title" class="section">
+      <p class="eyebrow">診断結果</p>
+      <h2 id="result-title">あなたのNotta最低必要plan</h2>
+      <div id="notta-result" aria-live="polite" class="notta-placeholder">条件を入力して「最低必要planを比較」を押してください。</div>
+
+      <h2 class="compare-title">同じ条件で他社比較</h2>
+      <div id="summary" class="summary-box">Freeが条件を満たす場合は、無料候補を有料より優先して表示します。</div>
+      <div id="results"></div>
+    </section>
+
+    <section aria-labelledby="compare-title" class="section prose">
+      <h2 id="compare-title">NottaとOtterは何が違う？</h2>
+      <p>このページでは製品の主観スコアではなく、同じ入力条件で最低必要planだけを比較します。たとえばNottaはFreeが月120分・1回3分、Premiumが月1,800分・1回5時間。OtterはBasicが月300分・1回30分、Proが月1,200分・1回90分です。必要minutesや1回の会議長が境界を超えると、同じ人でも各社で必要planが変わります。</p>
+      <p>OtterのBusinessは現在、meeting/in-app recordingsが無制限で1回4時間まで。価格はUSD表示のため、NottaのJPY価格とは自動為替換算せず、それぞれの公式通貨で表示します。</p>
+    </section>
+
+    <section aria-labelledby="trust-title" class="section trust-box">
+      <h2 id="trust-title">仕様・価格の確認について</h2>
+      <p>仕様確認日：<strong>2026-08-16</strong></p>
+      <p>価格・plan仕様は変更される場合があります。購入前に各社公式ページを再確認してください。Enterpriseや公開情報不足の条件は、推定せず「情報不足で判定不能」と表示します。</p>
+      <ul>
+        <li><a href="https://www.notta.ai/pricing" target="_blank" rel="noopener noreferrer">Notta公式料金</a></li>
+        <li><a href="https://fireflies.ai/pricing" target="_blank" rel="noopener noreferrer">Fireflies公式料金</a></li>
+        <li><a href="https://tldv.io/" target="_blank" rel="noopener noreferrer">tl;dv公式サイト</a></li>
+        <li><a href="https://otter.ai/pricing" target="_blank" rel="noopener noreferrer">Otter公式料金</a></li>
+      </ul>
+      <p class="fineprint">このMVPにはAffiliate linkを設置していません。将来リンクを差し替える場合も、Affiliate報酬は診断・順位ロジックへ渡さない設計です。</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>最終更新：2026-08-16 / 静的MVP・入力データの保存なし</p></div>
+  </footer>
+
+  <script src="product-data.js"></script>
+  <script src="logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
