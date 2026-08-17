@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://notta-plan-selector.pages.dev/sitemap.xml
