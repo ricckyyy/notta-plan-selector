@@ -4,6 +4,20 @@
   const summaryRoot = document.getElementById('summary');
   const nottaRoot = document.getElementById('notta-result');
 
+  // Affiliate URLs are kept outside PRODUCT_DATA and the ranking logic.
+  // They are only used for an outbound CTA after eligibility has been evaluated.
+  const affiliateLinks = {
+    'Fireflies.ai': {
+      url: 'https://fireflies.ai/?fpr=riki47',
+      label: 'Firefliesを試す（Affiliate）'
+    }
+  };
+
+  const affiliateDisclosure = document.querySelector('.trust-box .fineprint');
+  if (affiliateDisclosure) {
+    affiliateDisclosure.textContent = 'このページにはFireflies.aiのAffiliateリンクを含みます。リンク経由で有料契約された場合、運営者が報酬を受け取ることがあります。Affiliate報酬は診断・順位ロジックには使用していません。Notta・tl;dv・Otterのリンクは現在通常リンクです。';
+  }
+
   function getInput() {
     return {
       platforms: [...document.querySelectorAll('input[name="platform"]:checked')].map(el => el.value),
@@ -68,6 +82,11 @@
       ? priceLabel(result)
       : (result.status === 'unknown' && result.confirmedFallbackPlan && result.annualCost ? `確認済み上位：${priceLabel(result)}` : '—');
 
+    const affiliate = affiliateLinks[result.product];
+    const affiliateCta = affiliate && result.status === 'meets'
+      ? `<a class="button button-secondary affiliate-link" data-product="${escapeHtml(result.product)}" href="${escapeHtml(affiliate.url)}" target="_blank" rel="sponsored noopener noreferrer">${escapeHtml(affiliate.label)}</a>`
+      : '';
+
     return `
       <article class="result-card status-${result.status}" data-product="${escapeHtml(result.product)}">
         <div class="result-head">
@@ -87,6 +106,7 @@
           <ul class="plan-list">${planBreakdown(result)}</ul>
         </details>
         <a class="source-link cta-link" data-product="${escapeHtml(result.product)}" href="${escapeHtml(result.homepage)}" target="_blank" rel="noopener noreferrer">${escapeHtml(result.pricingSourceLabel)}を確認</a>
+        ${affiliateCta}
       </article>`;
   }
 
