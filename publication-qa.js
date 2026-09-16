@@ -3,7 +3,9 @@ const data = require('./product-data.js');
 const { evaluateAll } = require('./logic.js');
 
 let failures = 0;
+let checks = 0;
 function check(name, ok) {
+  checks++;
   console.log(`${ok ? 'PASS' : 'FAIL'} | ${name}`);
   if (!ok) failures++;
 }
@@ -26,8 +28,16 @@ check('UI shows Business Plus diagnostic exclusion', html.includes('Business Plu
 check('UI contains checked date', html.includes('2026-08-16'));
 check('UI contains official source links', html.includes('https://www.notta.ai/pricing') && html.includes('https://fireflies.ai/pricing') && html.includes('https://otter.ai/pricing'));
 check('UI has exactly one H1', (html.match(/<h1\b/g) || []).length === 1);
-check('GitHub Pages canonical URL is set', html.includes('<link rel="canonical" href="https://ricckyyy.github.io/notta-plan-selector/">'));
-check('No affiliate tracking URL is present', !/impact\.com|firstpromoter|partnerstack|ref=affiliate|utm_(source|medium)=affiliate/i.test(html));
+const canonical = 'https://notta-plan-selector.pages.dev/';
+check('Canonical and sitemap identify the published Cloudflare site',
+  html.includes(`<link rel="canonical" href="${canonical}">`) &&
+  fs.readFileSync('./sitemap.xml', 'utf8').includes(`<loc>${canonical}</loc>`) &&
+  fs.readFileSync('./robots.txt', 'utf8').includes(`Sitemap: ${canonical}sitemap.xml`));
+check('Affiliate disclosure is present before the diagnostic results without JavaScript',
+  html.indexOf('Fireflies.aiの紹介リンク') >= 0 &&
+  html.indexOf('Fireflies.aiの紹介リンク') < html.indexOf('id="results"') &&
+  html.includes('報酬を受け取ることがあります') &&
+  !html.includes('Affiliate linkを設置していません'));
 
-console.log(`\nPublication QA: ${11 - failures}/11 PASS`);
+console.log(`\nPublication QA: ${checks - failures}/${checks} PASS`);
 if (failures) process.exit(1);

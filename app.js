@@ -13,11 +13,6 @@
     }
   };
 
-  const affiliateDisclosure = document.querySelector('.trust-box .fineprint');
-  if (affiliateDisclosure) {
-    affiliateDisclosure.textContent = 'このページにはFireflies.aiのAffiliateリンクを含みます。リンク経由で有料契約された場合、運営者が報酬を受け取ることがあります。Affiliate報酬は診断・順位ロジックには使用していません。Notta・tl;dv・Otterのリンクは現在通常リンクです。';
-  }
-
   function getInput() {
     return {
       platforms: [...document.querySelectorAll('input[name="platform"]:checked')].map(el => el.value),
