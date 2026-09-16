@@ -1,5 +1,14 @@
 # Notta料金・AI議事録 最低plan比較 — 公開前MVP
 
+## 運用状況（2026-09-16確認）
+
+- 正規公開URL: https://notta-plan-selector.pages.dev/
+- GitHub Pagesでも配信されていますが、canonical・sitemapはCloudflareのURLを指します。
+- Fireflies.aiの紹介リンクとCloudflare Web Analyticsは導入済みです。以下の公開前説明・チェックリストの「未導入」記載は初期構築時の履歴です。
+- 紹介リンクの開示はJavaScriptに依存しない本文にあり、診断結果より前に表示します。
+- 料金・仕様の最終確認日は2026-08-16のままです。今回の開示修正は価格の再確認を意味しません。
+- テスト: `node tests.js`、`node boundary-tests.js`、`node publication-qa.js`。
+
 静的1ページMVPです。`index.html` をローカルで開くだけで動きます。DB、login、backend、paid API、analytics、Affiliate linkはありません。
 
 ## ファイル
