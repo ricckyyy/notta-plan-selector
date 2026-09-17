@@ -21,7 +21,7 @@ check('Business Plus is displayed as excluded diagnostic plan', Boolean(plus) &&
 
 const mixed = evaluateAll({ platforms: ['zoom'], maxMeetingMinutes: 90, monthlyMinutes: 2000, usageMode: 'individual', paidSeats: 1, translationRequired: false, crmRequired: true, videoRequired: false }, data);
 check('Mixed JPY/USD paid candidates are not marked price-comparable', mixed.pricingComparable === false && mixed.paidCurrencies.includes('JPY') && mixed.paidCurrencies.includes('USD'));
-check('Mixed-currency ranking does not claim cross-currency cheapest by sorting', mixed.ranked.filter(r => r.status === 'meets').map(r => r.product).slice(0, 4).join('|') === 'Notta|Fireflies.ai|tl;dv|Otter.ai');
+check('Mixed-currency ranking does not claim cross-currency cheapest by sorting', mixed.ranked.filter(r => r.status === 'meets').map(r => r.product).slice(0, 4).join('|') === 'Notta|tl;dv|Otter.ai');
 
 const html = fs.readFileSync('./index.html', 'utf8');
 check('UI shows Business Plus diagnostic exclusion', html.includes('Business Plus') && html.includes('対象外'));

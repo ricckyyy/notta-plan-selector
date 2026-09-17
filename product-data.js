@@ -34,7 +34,7 @@
             note: '年額64,800円/年/アカウント（税抜、12か月一括）。月間契約は9,000円/月/アカウント（税抜）。'
           }),
           source: 'https://www.notta.ai/news/info/notta-business-plus',
-          reason: '現8入力には「Notta Brainを本格利用する」「AI学習なしが必須」等がないため、Businessとの差を機械判定できない。料金表には表示するが診断候補には含めない。'
+          reason: '現在の入力には「Notta Brainを本格利用する」「AI学習なしが必須」等がないため、Businessとの差を機械判定できない。料金表には表示するが診断候補には含めない。'
         }
       ],
       plans: [
@@ -124,11 +124,13 @@
           price: price('USD', 0, 0, { billing: 'free' }),
           maxSeats: null,
           monthlyTranscriptionMinutes: Infinity,
+          requiresAutoJoin: true,
+          usageNote: '保存枠は400分。長期保存には削除・整理が必要です。アップロードやAI機能には別の上限があります。',
           maxMeetingMinutes: 120,
           supportedMeetingPlatforms: ['zoom', 'teams', 'meet', 'webex'],
           japaneseTranscription: true,
           transcriptTranslation: null,
-          crmOrZapier: false,
+          crmOrZapier: null,
           videoRecording: false,
           videoPlatforms: [],
           sources: ['https://fireflies.ai/pricing', 'https://guide.fireflies.ai/articles/6176608577-learn-about-fireflies-free-plan-features']

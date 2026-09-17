@@ -12,6 +12,11 @@ const base = {
 };
 
 const tests = [
+  ['Fireflies Free without Auto Join is not assumed unlimited', () => findProduct('Fireflies.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 60 }), r => r.status === 'unknown' && r.minimumPlan === null && r.uncertainty.some(v => v.includes('Auto Join'))],
+  ['Fireflies Free with Auto Join can meet time requirements', () => findProduct('Fireflies.ai', { ...base, autoJoinAllowed: true, monthlyMinutes: 600, maxMeetingMinutes: 60 }), r => r.status === 'meets' && r.minimumPlan === 'Free'],
+  ['Fireflies Free does not imply unlimited retained storage', () => findProduct('Fireflies.ai', { ...base, autoJoinAllowed: true }), r => r.reasons.some(v => v.includes('400'))],
+  ['Fireflies Free CRM uncertainty does not force a paid recommendation', () => findProduct('Fireflies.ai', { ...base, autoJoinAllowed: true, crmRequired: true }), r => r.status === 'unknown' && r.minimumPlan === null],
+  ['Fireflies Free Auto Join does not bypass recording limit', () => findProduct('Fireflies.ai', { ...base, autoJoinAllowed: true, maxMeetingMinutes: 121 }), r => r.minimumPlan === 'Business'],
   ['Notta Free monthly: 120 stays Free', () => findProduct('Notta', { ...base, monthlyMinutes: 120, maxMeetingMinutes: 3 }), r => r.status === 'meets' && r.minimumPlan === 'Free'],
   ['Notta Free monthly: 121 moves Premium', () => findProduct('Notta', { ...base, monthlyMinutes: 121, maxMeetingMinutes: 3 }), r => r.status === 'meets' && r.minimumPlan === 'Premium'],
   ['Notta Free meeting: 3 stays Free', () => findProduct('Notta', { ...base, monthlyMinutes: 100, maxMeetingMinutes: 3 }), r => r.status === 'meets' && r.minimumPlan === 'Free'],
@@ -26,8 +31,8 @@ const tests = [
   ['Otter Pro monthly: 1201 moves Business', () => findProduct('Otter.ai', { ...base, monthlyMinutes: 1201, maxMeetingMinutes: 90 }), r => r.status === 'meets' && r.minimumPlan === 'Business'],
   ['Otter Pro meeting: 90 stays Pro', () => findProduct('Otter.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 90 }), r => r.status === 'meets' && r.minimumPlan === 'Pro'],
   ['Otter Pro meeting: 91 moves Business', () => findProduct('Otter.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 91 }), r => r.status === 'meets' && r.minimumPlan === 'Business'],
-  ['Seat pricing: Fireflies Pro 1 seat = USD120/year', () => findProduct('Fireflies.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 60, crmRequired: true, paidSeats: 1 }), r => r.status === 'meets' && r.minimumPlan === 'Pro' && r.annualCost.currency === 'USD' && r.annualCost.amount === 120],
-  ['Seat pricing: Fireflies Pro 5 seats = USD600/year', () => findProduct('Fireflies.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 60, crmRequired: true, usageMode: 'team', paidSeats: 5 }), r => r.status === 'meets' && r.minimumPlan === 'Pro' && r.annualCost.currency === 'USD' && r.annualCost.amount === 600],
+  ['Seat pricing: Fireflies Pro 1 seat = USD120/year', () => findProduct('Fireflies.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 60, crmRequired: true, videoRequired: true, paidSeats: 1 }), r => r.status === 'meets' && r.minimumPlan === 'Pro' && r.annualCost.currency === 'USD' && r.annualCost.amount === 120],
+  ['Seat pricing: Fireflies Pro 5 seats = USD600/year', () => findProduct('Fireflies.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 60, crmRequired: true, videoRequired: true, usageMode: 'team', paidSeats: 5 }), r => r.status === 'meets' && r.minimumPlan === 'Pro' && r.annualCost.currency === 'USD' && r.annualCost.amount === 600],
   ['Unknown cheaper plan is not skipped', () => {
     const synthetic = { product: 'Boundary Fixture', homepage: '', checkedAt: '2026-08-16', plans: [
       { plan: 'Cheap', free: false, price: { currency: 'USD', annualTotal: 60, annualMonthly: 5, perSeat: true, exactAnnualTotal: true }, maxSeats: null, monthlyTranscriptionMinutes: Infinity, maxMeetingMinutes: Infinity, supportedMeetingPlatforms: ['zoom'], transcriptTranslation: null, crmOrZapier: false, videoRecording: false, videoPlatforms: [] },

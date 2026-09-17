@@ -58,9 +58,13 @@
       rejectReasons.push(`月${monthly.toLocaleString()}分は上限${Number.isFinite(plan.monthlyTranscriptionMinutes) ? plan.monthlyTranscriptionMinutes.toLocaleString() + '分' : 'なし'}を超える`);
     } else if (Number.isFinite(plan.monthlyTranscriptionMinutes)) {
       matchReasons.push(`月${monthly.toLocaleString()}分 ≤ 上限${plan.monthlyTranscriptionMinutes.toLocaleString()}分`);
+    } else if (plan.requiresAutoJoin && input.autoJoinAllowed !== true) {
+      unknownReasons.push('Freeの初期枠は会議3回。無制限にはAuto Joinの有効化が必要なため、未確認では無料で足りると判定できない');
     } else {
-      matchReasons.push('月間meeting文字起こしは無制限');
+      matchReasons.push(plan.requiresAutoJoin ? 'Auto Joinを有効にする前提で、対応会議の文字起こしは無制限' : '月間meeting文字起こしは無制限');
     }
+
+    if (plan.usageNote) matchReasons.push(plan.usageNote);
 
     const maxMeeting = Number(input.maxMeetingMinutes) || 0;
     if (plan.maxMeetingMinutes === null) {
@@ -168,7 +172,7 @@
         confirmedFallbackPlan: firstConfirmed.plan,
         annualCost: firstConfirmed.annualCost,
         reasons: firstConfirmed.matchReasons,
-        uncertainty: [`${earlierUnknown.plan} が要件を満たすか公開情報だけでは確定できないため、最低planを断定できない`]
+        uncertainty: [...earlierUnknown.unknownReasons, `${earlierUnknown.plan} が要件を満たすか公開情報だけでは確定できないため、最低planを断定できない`]
       };
     }
 

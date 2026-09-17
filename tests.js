@@ -4,13 +4,13 @@ const { evaluateAll } = require('./logic.js');
 const cases = [
   {
     id: 'A',
-    input: { platforms: ['zoom'], maxMeetingMinutes: 60, monthlyMinutes: 600, usageMode: 'individual', paidSeats: 1, translationRequired: false, crmRequired: false, videoRequired: false },
+    input: { platforms: ['zoom'], maxMeetingMinutes: 60, monthlyMinutes: 600, usageMode: 'individual', paidSeats: 1, autoJoinAllowed: true, translationRequired: false, crmRequired: false, videoRequired: false },
     expect: { 'Notta': ['meets', 'Premium'], 'Fireflies.ai': ['meets', 'Free'], 'tl;dv': ['meets', 'Free'], 'Otter.ai': ['meets', 'Pro'] }
   },
   {
     id: 'B',
     input: { platforms: ['zoom'], maxMeetingMinutes: 90, monthlyMinutes: 2000, usageMode: 'individual', paidSeats: 1, translationRequired: false, crmRequired: true, videoRequired: false },
-    expect: { 'Notta': ['meets', 'Business'], 'Fireflies.ai': ['meets', 'Pro'], 'tl;dv': ['meets', 'Pro'], 'Otter.ai': ['meets', 'Business'] }
+    expect: { 'Notta': ['meets', 'Business'], 'Fireflies.ai': ['unknown', null], 'tl;dv': ['meets', 'Pro'], 'Otter.ai': ['meets', 'Business'] }
   },
   {
     id: 'C',
@@ -24,7 +24,7 @@ const cases = [
   },
   {
     id: 'E',
-    input: { platforms: ['zoom'], maxMeetingMinutes: 60, monthlyMinutes: 100, usageMode: 'individual', paidSeats: 1, translationRequired: false, crmRequired: false, videoRequired: false },
+    input: { platforms: ['zoom'], maxMeetingMinutes: 60, monthlyMinutes: 100, usageMode: 'individual', paidSeats: 1, autoJoinAllowed: true, translationRequired: false, crmRequired: false, videoRequired: false },
     expect: { 'Notta': ['meets', 'Premium'], 'Fireflies.ai': ['meets', 'Free'], 'tl;dv': ['meets', 'Free'], 'Otter.ai': ['meets', 'Pro'] }
   }
 ];

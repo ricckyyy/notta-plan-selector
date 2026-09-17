@@ -22,7 +22,8 @@
       paidSeats: Number(document.getElementById('paidSeats').value),
       translationRequired: document.getElementById('translationRequired').checked,
       crmRequired: document.getElementById('crmRequired').checked,
-      videoRequired: document.getElementById('videoRequired').checked
+      videoRequired: document.getElementById('videoRequired').checked,
+      autoJoinAllowed: document.getElementById('autoJoinAllowed').checked
     };
   }
 
