@@ -7,6 +7,10 @@
   // Affiliate URLs are kept outside PRODUCT_DATA and the ranking logic.
   // They are only used for an outbound CTA after eligibility has been evaluated.
   const affiliateLinks = {
+    'Notta': {
+      url: 'https://notta.pxf.io/c/7630624/1991015/24010?u=https%3A%2F%2Fwww.notta.ai%2Fpricing&subId1=notta-plan-selector&subId2=diagnosis-result',
+      label: 'Nottaの料金・プランを見る（広告）'
+    },
     'Fireflies.ai': {
       url: 'https://fireflies.ai/?fpr=riki47',
       label: 'Firefliesを試す（Affiliate）'

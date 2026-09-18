@@ -5,7 +5,7 @@
 - 正規URL：https://notta-plan-selector.pages.dev/
 - 解説：https://notta-plan-selector.pages.dev/guides/notta-free-limit/
 - GitHub Pagesでも配信。canonicalとsitemapはCloudflareを指定。
-- Fireflies紹介リンクあり。報酬情報は判定ロジックに渡さず、本文で広告を開示。
+- Notta・Fireflies紹介リンクあり。報酬情報は判定ロジックに渡さず、本文で広告を開示。
 - Cloudflare Web Analytics導入済み。ただし診断完了や外部クリックの独自イベントは未実装。ページ閲覧と成約は別の指標。
 
 ## 2026-09-17の改善
@@ -38,6 +38,12 @@ python3 -m http.server 8000
 
 5つの利用シナリオ、22の境界条件、公開前の構造確認を実施する。入力の追加時は画面とシナリオも更新する。
 
-## 計測上の保留
+## 2026-09-18の紹介リンク接続
 
-Cloudflareの実アクセスとFirstPromoterのクリック・承認報酬は管理画面の認証待ち。Nottaリンクは通常リンクであり収益化未接続。日本語公式の案内先A8.netと英語公式のImpactを混同せず、既存アカウントの提携・対象国・料率を確認してから設置する。
+承認済みのNotta紹介リンクを診断結果と無料版の解説に設置。日本語料金ページへ遷移する。診断では条件を満たす場合だけ紹介ボタンを表示し、出典の通常リンクも維持する。
+
+ImpactのSub IDで掲載元を識別する。subId1はnotta-plan-selector、subId2はdiagnosis-resultまたはguide-free-limit。個人情報や診断入力は送信しない。広告表記はJavaScriptなしでも読める。
+
+## 計測の範囲
+
+Cloudflareはページ閲覧、Search Consoleは検索表示・クリック、ImpactとFirstPromoterは紹介クリック・成果を別々に確認する。Cloudflare Web Analyticsでは独自クリックイベントやUTM別集計は取得できない。紹介リンクの設置だけで成約や報酬が発生したとは判断しない。
