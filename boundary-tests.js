@@ -12,6 +12,8 @@ const base = {
 };
 
 const tests = [
+  ['Notta Business accepts 50 seats', () => findProduct('Notta', { ...base, usageMode: 'team', paidSeats: 50, monthlyMinutes: 600, maxMeetingMinutes: 60 }), r => r.status === 'meets' && r.minimumPlan === 'Business' && r.annualCost.amount === 1504800],
+  ['Notta 51 seats requires a custom quote, not a Business checkout', () => findProduct('Notta', { ...base, usageMode: 'team', paidSeats: 51, monthlyMinutes: 600, maxMeetingMinutes: 60 }), r => r.status === 'unknown' && r.minimumPlan === null && r.annualCost === null && r.planResults.find(p => p.plan === 'Business').status === 'reject'],
   ['Fireflies Free without Auto Join is not assumed unlimited', () => findProduct('Fireflies.ai', { ...base, monthlyMinutes: 600, maxMeetingMinutes: 60 }), r => r.status === 'unknown' && r.minimumPlan === null && r.uncertainty.some(v => v.includes('Auto Join'))],
   ['Fireflies Free with Auto Join can meet time requirements', () => findProduct('Fireflies.ai', { ...base, autoJoinAllowed: true, monthlyMinutes: 600, maxMeetingMinutes: 60 }), r => r.status === 'meets' && r.minimumPlan === 'Free'],
   ['Fireflies Free does not imply unlimited retained storage', () => findProduct('Fireflies.ai', { ...base, autoJoinAllowed: true }), r => r.reasons.some(v => v.includes('400'))],

@@ -83,7 +83,8 @@
             exactAnnualTotal: true,
             note: '年払い時2,508円/月、1アカウント時の総額30,096円（税込・12か月一括）。アカウント数で総額が増える。'
           }),
-          maxSeats: null,
+          maxSeats: 50,
+          usageNote: 'Businessは1〜50人。51人以上はEnterpriseの個別条件を公式窓口で確認してください（人数条件確認：2026-09-24）。',
           monthlyTranscriptionMinutes: Infinity,
           maxMeetingMinutes: 300,
           supportedMeetingPlatforms: ['zoom', 'teams', 'meet', 'webex'],
@@ -92,7 +93,7 @@
           crmOrZapier: true,
           videoRecording: true,
           videoPlatforms: ['zoom', 'teams', 'meet', 'webex'],
-          sources: ['https://www.notta.ai/pricing']
+          sources: ['https://www.notta.ai/pricing', 'https://support.notta.ai/hc/ja/articles/55447618158491']
         },
         {
           plan: 'Enterprise',
