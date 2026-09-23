@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://notta-plan-selector.pages.dev/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://notta-plan-selector.pages.dev/guides/notta-free-limit/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-24</lastmod>
   </url>
   <url>
     <loc>https://notta-plan-selector.pages.dev/guides/notta-premium-business/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-24</lastmod>
+  </url>
+  <url>
+    <loc>https://notta-plan-selector.pages.dev/guides/notta-audio-files/</loc>
+    <lastmod>2026-09-24</lastmod>
   </url>
 </urlset>
